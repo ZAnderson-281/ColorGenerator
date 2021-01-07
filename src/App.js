@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Color from "./SingleColor";
+import Color from "./Color";
 
 import Values from "values.js";
 
@@ -42,8 +42,9 @@ function App() {
       </section>
       <section className="colors">
         {colorList.map((color, index) => {
-          console.log(color);
-          return <Color key={index} {...color} index={index} />;
+          return (
+            <Color key={index} {...color} index={index} hexColor={color.hex} />
+          );
         })}
       </section>
     </>
