@@ -5,6 +5,7 @@ const Color = ({ rgb, weight, index, hexColor }) => {
   const bcg = rgb.join(",");
   const hexValue = `#${hexColor}`;
 
+  // Display modal for 2 seconds
   useEffect(() => {
     const timeout = setTimeout(() => {
       setAlert(false);
@@ -14,6 +15,8 @@ const Color = ({ rgb, weight, index, hexColor }) => {
       clearTimeout(timeout);
     };
   }, [alert]);
+
+  // Copy to clipboard
   const handleClick = () => {
     setAlert(true);
     navigator.clipboard.writeText(hexValue);
