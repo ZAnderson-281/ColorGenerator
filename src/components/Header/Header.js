@@ -1,29 +1,28 @@
-import React, { useState, useEffect } from "react";
-import Color from "../Color/Color";
-
+import React, { useEffect } from "react";
 import Values from "values.js";
 
-function Header({
-  color,
-  setColor,
-  isError,
-  setIsError,
-  colorList,
-  setColorList,
-}) {
+function Header({ color, setColor, setColorList }) {
   // Set State
 
   useEffect(() => {
     try {
-      setIsError(false);
-      // create array of colors from values.js
-      let colors = new Values(color).all(10);
+      let colors;
+
+      if (!color.includes("#")) {
+        colors = new Values(`#${color}`).all(10);
+      } else {
+        colors = new Values(color).all(10);
+      }
       setColorList(colors);
     } catch (error) {
-      setIsError(true);
       console.log(error);
     }
   }, [color]);
+
+  const handleInput = (e) => {
+    let input = e.target.value;
+    setColor(input);
+  };
 
   return (
     <>
@@ -33,11 +32,9 @@ function Header({
           <input
             type="text"
             value={color}
-            onChange={(e) => {
-              setColor(e.target.value);
-            }}
-            placeholder="#0FF0FF"
-            className={isError ? "error" : null}
+            onChange={handleInput}
+            placeholder="#Hex Code"
+            // className={isError ? "error" : null}
           />
         </form>
       </section>
