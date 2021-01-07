@@ -1,16 +1,24 @@
 import React, { useState } from "react";
-import SingleColor from "./SingleColor";
+import Color from "./SingleColor";
 
 import Values from "values.js";
 
 function App() {
   const [color, setColor] = useState("");
-  const [error, setError] = useState(false);
-  const [list, setList] = useState([]);
+  const [isError, setIsError] = useState(false);
+  const [colorList, setColorList] = useState([]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Handle Submit");
+    try {
+      setIsError(false);
+      // create array of colors from values.js
+      let colors = new Values(color).all(10);
+      setColorList(colors);
+    } catch (error) {
+      setIsError(true);
+      console.log(error);
+    }
   };
 
   return (
@@ -25,13 +33,19 @@ function App() {
               setColor(e.target.value);
             }}
             placeholder="#f15025"
+            className={isError ? "error" : null}
           />
           <button type="submit" className="btn">
             Submit
           </button>
         </form>
       </section>
-      <section className="colors">{/* List goes here */}</section>
+      <section className="colors">
+        {colorList.map((color, index) => {
+          console.log(color);
+          return <Color key={index} {...color} index={index} />;
+        })}
+      </section>
     </>
   );
 }
