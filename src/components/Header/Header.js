@@ -37,18 +37,16 @@ function Header({ color, setColor, setColorList, ammount, setAmmount }) {
     <>
       <section className="container">
         <h3>Color Picker</h3>
-        <form>
-          <input
-            type="text"
-            value={color}
-            onChange={handleInput}
-            placeholder="#Hex Code"
-            // className={isError ? "error" : null}
-          />
-          <button className="btn" onClick={handleToggleSpectrum}>
-            Full Spectrum
-          </button>
-        </form>
+        <input
+          type="text"
+          value={color}
+          onChange={handleInput}
+          placeholder="#Hex Code"
+          // className={isError ? "error" : null}
+        />
+        <button className="btn" onClick={handleToggleSpectrum}>
+          Full Spectrum
+        </button>
       </section>
     </>
   );

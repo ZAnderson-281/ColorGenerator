@@ -1,17 +1,12 @@
 import React from "react";
 import Color from "./Color";
 
-function ColorContainer({
-  colorList,
-  containerName,
-  setColorPallet,
-  colorPallet,
-}) {
+function ColorPallet({ colorList, colorPallet, setColorPallet }) {
   return (
-    <section>
-      <h3>{containerName}</h3>
-      <div className="colors">
-        {colorList.map((color, index) => {
+    <section className="color">
+      <h3>Color Pallet</h3>
+      <artical className="color">
+        {colorPallet.map((color, index) => {
           return (
             <Color
               key={index}
@@ -23,9 +18,9 @@ function ColorContainer({
             />
           );
         })}
-      </div>
+      </artical>
     </section>
   );
 }
 
-export default ColorContainer;
+export default ColorPallet;
