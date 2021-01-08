@@ -8,7 +8,7 @@ function ColorContainer({
   colorPallet,
 }) {
   return (
-    <section>
+    <section className="color">
       <h3>{containerName}</h3>
       <div className="colors">
         {colorList.map((color, index) => {

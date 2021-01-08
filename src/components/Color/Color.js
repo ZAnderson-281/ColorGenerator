@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import ColorPallet from "./ColorPallet";
 
 const Color = ({
   rgb,
@@ -37,6 +36,16 @@ const Color = ({
     };
   }, [alertAdd]);
 
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setIsHovered(false);
+    }, 2000);
+
+    return () => {
+      clearTimeout(timeout);
+    };
+  }, [isHovered]);
+
   // Copy to clipboard
   const handleClickCopied = () => {
     setAlertCopied(true);
@@ -57,19 +66,24 @@ const Color = ({
       }}
       style={{
         backgroundColor: `rgb(${bcg})`,
+        height: "9rem",
       }}
       className={`color ${index > 10 && "color-light"}`}
     >
       <p className="percent-value">Weight: {weight}%</p>
       <p>{hexValue}</p>
       {isHovered && (
-        <>
-          <button onClick={handleClickCopied}>Copy</button>
-          <button onClick={handleClickAdd}>Add </button>
-        </>
+        <div className="flex">
+          <button className="btn-colorbox" onClick={handleClickCopied}>
+            Copy
+          </button>
+          <button className="btn-colorbox" onClick={handleClickAdd}>
+            Add
+          </button>
+        </div>
       )}
-      {alertCopied && <p className="alert">Copied to clipboard</p>}
-      {alertAdd && <p className="alert">Added to pallet</p>}
+      {alertCopied && <p className={`color alert`}>Copied to clipboard</p>}
+      {alertAdd && <p className={`color alert`}>Added to pallet</p>}
     </article>
   );
 };

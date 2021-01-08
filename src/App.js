@@ -5,12 +5,14 @@ import ColorContainer from "./components/Color/ColorContainer";
 
 import Values from "values.js";
 import ColorPallet from "./components/Color/ColorPallet";
+import { Collapse } from "@material-ui/core";
 
 function App() {
   const [color, setColor] = useState("");
   const [colorPallet, setColorPallet] = useState([]);
   const [ammount, setAmmount] = useState(10);
   const [colorList, setColorList] = useState(new Values("#F00").all(ammount));
+  const [expanded, setExpanded] = React.useState(false);
 
   return (
     <>
@@ -20,13 +22,18 @@ function App() {
         setColorList={setColorList}
         ammount={ammount}
         setAmmount={setAmmount}
+        expanded={expanded}
+        setExpanded={setExpanded}
       />
+
       {colorPallet.length ? (
-        <ColorPallet
-          colorList={colorList}
-          setColorPallet={setColorPallet}
-          colorPallet={colorPallet}
-        />
+        <Collapse in={expanded} timeout="auto" unmountOnExit>
+          <ColorPallet
+            colorList={colorList}
+            setColorPallet={setColorPallet}
+            colorPallet={colorPallet}
+          />
+        </Collapse>
       ) : (
         <p>No Active pallet</p>
       )}

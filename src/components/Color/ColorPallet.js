@@ -5,20 +5,20 @@ function ColorPallet({ colorList, colorPallet, setColorPallet }) {
   return (
     <section className="color">
       <h3>Color Pallet</h3>
-      <artical className="color">
+      <div className="color">
         {colorPallet.map((color, index) => {
           return (
             <Color
               key={index}
               {...color}
               index={index}
-              hexColor={color.hex}
+              hexColor={color.hexColor}
               setColorPallet={setColorPallet}
               colorPallet={colorPallet}
             />
           );
         })}
-      </artical>
+      </div>
     </section>
   );
 }
