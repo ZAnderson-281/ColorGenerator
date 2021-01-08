@@ -1,9 +1,9 @@
 import React from "react";
 import Color from "./Color";
 
-function ColorPallet({ colorList, colorPallet, setColorPallet }) {
+function ColorPallet({ colorPallet, setColorPallet }) {
   return (
-    <section className="color">
+    <section className="color-pallet">
       <h3>Color Pallet</h3>
       <div className="color">
         {colorPallet.map((color, index) => {

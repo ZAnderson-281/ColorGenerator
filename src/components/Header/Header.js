@@ -10,13 +10,15 @@ import {
 import Values from "values.js";
 
 const styles = makeStyles((theme) => ({
+  header: {
+    backgroundColor: "#ffffff",
+  },
   headerBtn: {
-    color: "#fff",
+    color: "#414141",
     margin: "1rem 1rem",
   },
   headerInput: {
-    borderColor: "#FFF !important",
-    color: "#FFF !important",
+    color: "#414141",
   },
 }));
 
@@ -67,7 +69,7 @@ function Header({
 
   return (
     <>
-      <AppBar>
+      <AppBar className={classes.header}>
         <Toolbar>
           <IconButton onClick={handleExpandClick}>
             <i className={`${classes.headerBtn} fas fa-bars`}></i>
@@ -84,19 +86,6 @@ function Header({
           </Button>
         </Toolbar>
       </AppBar>
-      <section className="container">
-        {/* <h3>Color Picker</h3> */}
-        {/* <input
-          type="text"
-          value={color}
-          onChange={handleInput}
-          placeholder="#Hex Code"
-          // className={isError ? "error" : null}
-        /> */}
-        {/* <button className="btn" onClick={handleToggleSpectrum}>
-          Full Spectrum
-        </button> */}
-      </section>
     </>
   );
 }

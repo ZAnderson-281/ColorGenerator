@@ -26,26 +26,31 @@ function App() {
         setExpanded={setExpanded}
       />
 
-      {colorPallet.length ? (
-        <Collapse in={expanded} timeout="auto" unmountOnExit>
+      {/* COLOR PALLET */}
+      <Collapse in={expanded} timeout="auto" unmountOnExit>
+        {colorPallet.length ? (
           <ColorPallet
             colorList={colorList}
             setColorPallet={setColorPallet}
             colorPallet={colorPallet}
           />
-        </Collapse>
-      ) : (
-        <p>No Active pallet</p>
-      )}
+        ) : (
+          <p>No Active pallet</p>
+        )}
+      </Collapse>
+
+      {/* General Pallet */}
       {color ? (
-        <ColorContainer
-          containerName=""
-          colorList={colorList}
-          setColorPallet={setColorPallet}
-          colorPallet={colorPallet}
-        />
+        <div className="color-container">
+          <ColorContainer
+            containerName={color}
+            colorList={colorList}
+            setColorPallet={setColorPallet}
+            colorPallet={colorPallet}
+          />
+        </div>
       ) : (
-        <>
+        <div className="color-container">
           <ColorContainer
             containerName="red"
             colorList={new Values("#F00").all(ammount)}
@@ -82,7 +87,7 @@ function App() {
             setColorPallet={setColorPallet}
             colorPallet={colorPallet}
           />
-        </>
+        </div>
       )}
     </>
   );
