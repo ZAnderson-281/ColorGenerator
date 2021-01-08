@@ -29,7 +29,7 @@ const Color = ({ rgb, weight, index, hexColor }) => {
       onClick={handleClick}
     >
       <p className="percent-value">Weight: {weight}%</p>
-      <p>#{hexValue}</p>
+      <p>{hexValue}</p>
       {alert && <p className="alert">Copied to clipboard</p>}
     </article>
   );
