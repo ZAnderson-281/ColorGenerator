@@ -6,12 +6,17 @@ import {
   Button,
   makeStyles,
   IconButton,
+  Collapse,
 } from "@material-ui/core";
 import Values from "values.js";
 
 const styles = makeStyles((theme) => ({
   header: {
     backgroundColor: "#ffffff",
+  },
+  iconMenu: {
+    opacity: "0.3",
+    backgroundColor: "#e5e5e5",
   },
   headerBtn: {
     color: "#414141",
@@ -35,6 +40,8 @@ function Header({
 
   // Set State
   const [isToggled, setIsToggled] = useState(true);
+  const [menuExpanded, setMenuExpanded] = useState(false);
+
   useEffect(() => {
     try {
       let colors;
@@ -54,6 +61,7 @@ function Header({
     let input = e.target.value;
     setColor(input);
   };
+
   const handleToggleSpectrum = (e) => {
     e.preventDefault();
     if (isToggled) {
@@ -64,7 +72,7 @@ function Header({
     setIsToggled(!isToggled);
   };
   const handleExpandClick = () => {
-    setExpanded(!expanded);
+    setMenuExpanded(!menuExpanded);
   };
 
   return (
@@ -85,6 +93,17 @@ function Header({
             Full Spectrum
           </Button>
         </Toolbar>
+        <Collapse in={menuExpanded} timeout="auto" unmountOnExit>
+          <Toolbar className={classes.iconMenu}>
+            <IconButton
+              onClick={() => {
+                setExpanded(!expanded);
+              }}
+            >
+              <i className={`${classes.headerBtn} fas fa-palette`}></i>
+            </IconButton>
+          </Toolbar>
+        </Collapse>
       </AppBar>
     </>
   );
