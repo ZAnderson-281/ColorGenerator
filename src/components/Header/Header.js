@@ -7,16 +7,32 @@ import {
   makeStyles,
   IconButton,
   Collapse,
+  FormControlLabel,
 } from "@material-ui/core";
 import Values from "values.js";
+import Picker from "../ColorPallet/Picker";
+import { PurpleSwitch } from "../ComponentStyles/Inputs";
 
+// CSS Styles for material UI
 const styles = makeStyles((theme) => ({
   header: {
-    backgroundColor: "#ffffff",
+    background: "transparent",
+    boxShadow: "none",
+    pointerEvents: "none",
+    color: "#2a2e32",
   },
-  iconMenu: {
-    opacity: "0.3",
-    backgroundColor: "#e5e5e5",
+  mainBar: {
+    backgroundColor: "#ffffff",
+    pointerEvents: "auto",
+  },
+  colorSelect: {
+    pointerEvents: "auto",
+    display: "flex",
+    flexDirection: "column",
+    backgroundColor: "#f5f5f5",
+    padding: "1rem",
+    width: "fit-content",
+    height: "fit-content",
   },
   headerBtn: {
     color: "#414141",
@@ -78,7 +94,8 @@ function Header({
   return (
     <>
       <AppBar className={classes.header}>
-        <Toolbar>
+        {/* Main Head Bar */}
+        <Toolbar className={classes.mainBar}>
           <IconButton onClick={handleExpandClick}>
             <i className={`${classes.headerBtn} fas fa-bars`}></i>
           </IconButton>
@@ -89,19 +106,31 @@ function Header({
             placeholder="#Hex Code"
             fullWidth={true}
           />
-          <Button className={classes.headerBtn} onClick={handleToggleSpectrum}>
-            Full Spectrum
-          </Button>
         </Toolbar>
+
+        {/* 2nd Menu Bar */}
         <Collapse in={menuExpanded} timeout="auto" unmountOnExit>
-          <Toolbar className={classes.iconMenu}>
-            <IconButton
-              onClick={() => {
-                setExpanded(!expanded);
-              }}
-            >
-              <i className={`${classes.headerBtn} fas fa-palette`}></i>
-            </IconButton>
+          <Toolbar className={classes.colorSelect}>
+            <div className="flex">
+              <FormControlLabel
+                control={
+                  <PurpleSwitch
+                    onChange={handleToggleSpectrum}
+                    name="Full Spectrum"
+                  />
+                }
+                label="Full Spectrum"
+              />
+              <IconButton
+                onClick={() => {
+                  setExpanded(!expanded);
+                  setMenuExpanded(!menuExpanded);
+                }}
+              >
+                <i className={`${classes.headerBtn} fas fa-palette`}></i>
+              </IconButton>
+            </div>
+            <Picker setColor={setColor} color={color} />
           </Toolbar>
         </Collapse>
       </AppBar>

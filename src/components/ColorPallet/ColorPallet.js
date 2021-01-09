@@ -1,10 +1,18 @@
 import React from "react";
-import Color from "./Color";
-
-function ColorPallet({ colorPallet, setColorPallet }) {
+import Color from "../Color/Color";
+import ColorPalletHeader from "./ColorPalletHeader";
+function ColorPallet({
+  colorPallet,
+  setColorPallet,
+  palletName,
+  setPalletName,
+}) {
   return (
     <section className="color-pallet">
-      <h3>Color Pallet</h3>
+      <ColorPalletHeader
+        palletName={palletName}
+        setPalletName={setPalletName}
+      />
       <div className="color">
         {colorPallet.map((color, index) => {
           return (

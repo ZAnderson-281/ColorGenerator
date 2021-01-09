@@ -4,7 +4,7 @@ import Header from "./components/Header/Header";
 import ColorContainer from "./components/Color/ColorContainer";
 
 import Values from "values.js";
-import ColorPallet from "./components/Color/ColorPallet";
+import ColorPallet from "./components/ColorPallet/ColorPallet";
 import { Collapse } from "@material-ui/core";
 
 function App() {
@@ -12,7 +12,8 @@ function App() {
   const [colorPallet, setColorPallet] = useState([]);
   const [ammount, setAmmount] = useState(10);
   const [colorList, setColorList] = useState(new Values("#F00").all(ammount));
-  const [expanded, setExpanded] = React.useState(false);
+  const [expanded, setExpanded] = useState(false);
+  const [palletName, setPalletName] = useState("Pallet Name");
 
   return (
     <>
@@ -33,6 +34,8 @@ function App() {
             colorList={colorList}
             setColorPallet={setColorPallet}
             colorPallet={colorPallet}
+            palletName={palletName}
+            setPalletName={setPalletName}
           />
         ) : (
           <p>No Active pallet</p>
