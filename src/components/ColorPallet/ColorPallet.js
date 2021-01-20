@@ -9,6 +9,7 @@ function ColorPallet({
   setPalletName,
 }) {
   const handleOnDragEnd = (result) => {
+    if (!result.destination) return;
     const newItems = [...colorPallet];
     const draggedItem = newItems[result.source.index];
     newItems.splice(result.source.index, 1);

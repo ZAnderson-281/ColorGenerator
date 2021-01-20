@@ -3,7 +3,6 @@ import {
   AppBar,
   Toolbar,
   Input,
-  Button,
   makeStyles,
   IconButton,
   Collapse,
@@ -40,6 +39,9 @@ const styles = makeStyles((theme) => ({
   },
   headerInput: {
     color: "#414141",
+  },
+  space: {
+    margin: "2rem 0rem",
   },
 }));
 
@@ -130,7 +132,11 @@ function Header({
                 <i className={`${classes.headerBtn} fas fa-palette`}></i>
               </IconButton>
             </div>
-            <Picker setColor={setColor} color={color} />
+            <Picker
+              className={classes.space}
+              setColor={setColor}
+              color={color}
+            />
           </Toolbar>
         </Collapse>
       </AppBar>
